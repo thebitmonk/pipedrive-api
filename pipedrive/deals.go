@@ -368,22 +368,24 @@ func (s *DealService) DeleteAttachedProduct(ctx context.Context, dealID int, pro
 // DealCreateOptions specifices the optional parameters to the
 // DealsService.Create method.
 type DealCreateOptions struct {
-	Title               string    `json:"title"`
-	Value               string    `json:"value"`
-	Currency            string    `json:"currency"`
-	UserID              uint      `json:"user_id"`
-	PersonID            uint      `json:"person_id"`
-	OrgID               uint      `json:"org_id"`
-	StageID             uint      `json:"stage_id"`
-	Status              string    `json:"status"`
-	Probability         uint      `json:"probability"`
-	LostReason          string    `json:"lost_reason"`
-	AddTime             Timestamp `json:"add_time"`
-	VisibleTo           VisibleTo `json:"visible_to"`
-	RequirementAnalysis string    `json:"56d3d40c37c0db60fff576ae73ba2fea0d58dc09"`
-	WantedStartTime     Timestamp `json:"a3114acce61bb930180af173b395d76f42af8794"`
-	TemporaryLink       string    `json:"4fe88fad67d8dcbc17d18d9ee1faac55122249fd,omitempty"`
-	LeadSource          uint      `json:"5d4fbabc9b032aeb3df515d9c66994d6892ee062,omitempty"`
+	Title                    string `json:"title"`
+	Value                    string `json:"value"`
+	Currency                 string `json:"currency"`
+	UserID                   uint   `json:"user_id"`
+	PersonID                 uint   `json:"person_id"`
+	OrgID                    uint   `json:"org_id"`
+	StageID                  uint   `json:"stage_id"`
+	Status                   string `json:"status"`
+	Probability              uint   `json:"probability"`
+	LostReason               string `json:"lost_reason"`
+	Email                    string `json:"f0a74c06775515bb3c5bfbc80d157c46609c3454"`
+	CurrentMarketingProvider string `json:"cb6c0a00b62c129deb45b682b39ef21df3c7ad1e"`
+	ProblemWithCurrentTool   string `json:"179c005eb84db10efebbe4cffbbdb2aac0cbe50a"`
+	SubscriberListSize       string `json:"e606fa94f4cf8cc4b2a0187be109dec802a40ca4"`
+	Industry                 string `json:"c1f4c914f2587631c8a02879da63b2da89fe099b"`
+	RiskLevel                string `json:"cc8260d1ee3befb9fdeb26d2b956c8549c4014c6"`
+	Risk                     string `json:"60d7884cc7a50c0ab8cb4b5f1b7304fc2f6cb6a9"`
+	Website                  string `json:"82fca18357101a0c9ec1f2fed37a7fd0b09d25a0"`
 }
 
 // Create a new deal.
@@ -391,16 +393,24 @@ type DealCreateOptions struct {
 // Pipedrive API docs: https://developers.pipedrive.com/docs/api/v1/#!/Deals/post_deals
 func (s *DealService) Create(ctx context.Context, opt *DealCreateOptions) (*DealResponse, *Response, error) {
 	req, err := s.client.NewRequest(http.MethodPost, "/deals", nil, struct {
-		Title       string `json:"title"`
-		Value       string `json:"value"`
-		Currency    string `json:"currency"`
-		UserID      uint   `json:"user_id"`
-		PersonID    uint   `json:"person_id"`
-		OrgID       uint   `json:"org_id"`
-		StageID     uint   `json:"stage_id"`
-		Status      string `json:"status"`
-		Probability uint   `json:"probability"`
-		LostReason  string `json:"lost_reason"`
+		Title                    string `json:"title"`
+		Value                    string `json:"value"`
+		Currency                 string `json:"currency"`
+		UserID                   uint   `json:"user_id"`
+		PersonID                 uint   `json:"person_id"`
+		OrgID                    uint   `json:"org_id"`
+		StageID                  uint   `json:"stage_id"`
+		Status                   string `json:"status"`
+		Probability              uint   `json:"probability"`
+		LostReason               string `json:"lost_reason"`
+		Email                    string `json:"f0a74c06775515bb3c5bfbc80d157c46609c3454"`
+		CurrentMarketingProvider string `json:"cb6c0a00b62c129deb45b682b39ef21df3c7ad1e"`
+		ProblemWithCurrentTool   string `json:"a2f18d37def05addb6d40b7f847566c96db65d7c"`
+		SubscriberListSize       string `json:"e606fa94f4cf8cc4b2a0187be109dec802a40ca4"`
+		Industry                 string `json:"c1f4c914f2587631c8a02879da63b2da89fe099b"`
+		RiskLevel                string `json:"cc8260d1ee3befb9fdeb26d2b956c8549c4014c6"`
+		Risk                     string `json:"60d7884cc7a50c0ab8cb4b5f1b7304fc2f6cb6a9"`
+		Website                  string `json:"82fca18357101a0c9ec1f2fed37a7fd0b09d25a0"`
 	}{
 		opt.Title,
 		opt.Value,
@@ -412,6 +422,14 @@ func (s *DealService) Create(ctx context.Context, opt *DealCreateOptions) (*Deal
 		opt.Status,
 		opt.Probability,
 		opt.LostReason,
+		opt.Email,
+		opt.CurrentMarketingProvider,
+		opt.ProblemWithCurrentTool,
+		opt.SubscriberListSize,
+		opt.Industry,
+		opt.RiskLevel,
+		opt.Risk,
+		opt.Website,
 	})
 
 	if err != nil {

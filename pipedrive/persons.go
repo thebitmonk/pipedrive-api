@@ -170,6 +170,29 @@ type PersonCreateOptions struct {
 	Label     uint      `json:"label"`
 }
 
+// Find deals by name.
+//
+// Pipedrive API docs: https://developers.pipedrive.com/docs/api/v1/#!/Persons/get_persons_find
+func (s *PersonsService) Find(ctx context.Context, term string) (*PersonsRespose, *Response, error) {
+	req, err := s.client.NewRequest(http.MethodGet, "/persons/find", &SearchOptions{
+		Term: term,
+	}, nil)
+
+	if err != nil {
+		return nil, nil, err
+	}
+
+	var record *PersonsRespose
+
+	resp, err := s.client.Do(ctx, req, &record)
+
+	if err != nil {
+		return nil, resp, err
+	}
+
+	return record, resp, nil
+}
+
 // Create a new person.
 //
 // Pipedrive API docs: https://developers.pipedrive.com/docs/api/v1/#!/Persons/post_persons
