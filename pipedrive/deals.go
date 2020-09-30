@@ -379,6 +379,7 @@ type DealCreateOptions struct {
 	Probability              uint   `json:"probability"`
 	LostReason               string `json:"lost_reason"`
 	Email                    string `json:"f0a74c06775515bb3c5bfbc80d157c46609c3454"`
+	PhoneNumber              string `json:"412bcdbdbdc750093bf95c174eba82eb407df88d"`
 	CurrentMarketingProvider string `json:"cb6c0a00b62c129deb45b682b39ef21df3c7ad1e"`
 	ProblemWithCurrentTool   string `json:"179c005eb84db10efebbe4cffbbdb2aac0cbe50a"`
 	SubscriberListSize       string `json:"e606fa94f4cf8cc4b2a0187be109dec802a40ca4"`
@@ -404,6 +405,7 @@ func (s *DealService) Create(ctx context.Context, opt *DealCreateOptions) (*Deal
 		Probability              uint   `json:"probability"`
 		LostReason               string `json:"lost_reason"`
 		Email                    string `json:"f0a74c06775515bb3c5bfbc80d157c46609c3454"`
+		PhoneNumber              string `json:"412bcdbdbdc750093bf95c174eba82eb407df88d"`
 		CurrentMarketingProvider string `json:"cb6c0a00b62c129deb45b682b39ef21df3c7ad1e"`
 		ProblemWithCurrentTool   string `json:"a2f18d37def05addb6d40b7f847566c96db65d7c"`
 		SubscriberListSize       string `json:"e606fa94f4cf8cc4b2a0187be109dec802a40ca4"`
@@ -423,6 +425,7 @@ func (s *DealService) Create(ctx context.Context, opt *DealCreateOptions) (*Deal
 		opt.Probability,
 		opt.LostReason,
 		opt.Email,
+		opt.PhoneNumber,
 		opt.CurrentMarketingProvider,
 		opt.ProblemWithCurrentTool,
 		opt.SubscriberListSize,
